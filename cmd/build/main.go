@@ -39,5 +39,21 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(output.String())
+	// fmt.Println(output.String())
+
+	f, err := os.Create("new.config")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer f.Close()
+
+	_, err2 := f.WriteString(output.String())
+
+	if err2 != nil {
+		log.Fatal(err2)
+	}
+
+	fmt.Println("done")
 }

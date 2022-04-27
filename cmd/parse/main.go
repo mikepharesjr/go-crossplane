@@ -20,5 +20,21 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(string(b))
+	// fmt.Println(string(b))
+
+	f, err := os.Create("nginx.json")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer f.Close()
+
+	_, err2 := f.WriteString(string(b))
+
+	if err2 != nil {
+		log.Fatal(err2)
+	}
+
+	fmt.Println("done")
 }
